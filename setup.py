@@ -16,7 +16,7 @@ setup(
     url='github.com/microcomp',
     license='',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
-    namespace_packages=['ckanext', 'ckanext.storage'],
+    namespace_packages=['ckanext', 'ckanext.storage_gui'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
@@ -25,6 +25,6 @@ setup(
     entry_points='''
         [ckan.plugins]
         # Add plugins here, e.g.
-        storage_admin_gui=ckanext.storage.plugin:StorageAdminGui
+        storage_admin_gui=ckanext.storage_gui.plugin:StorageAdminGui
     ''',
 )
