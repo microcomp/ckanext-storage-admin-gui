@@ -1,0 +1,37 @@
+{% extends "page.html" %}
+{% block subtitle %}{{ _('CKAN - Storage Administration') }}{% endblock %}
+{% block breadcrumb_content %}
+<li>{{ _('Storage Administration') }}</li>
+{% endblock %}
+{% block primary_content %}
+<div class="page-header">
+<h1>{{_('Storage statistics')}}</h1>
+</div>
+<h2>{{org_name}}</h2>
+
+<table class="table table-striped table-responsive">
+	<thead>
+      <tr>
+        <th>{{_('Filesystem usage')}}</th>
+        <th>{{_('Database usage')}}</th>
+        <th>{{_('Triplestore usage')}}</th>
+        <th>{{_('Update time')}}</th>
+      </tr>
+    </thead>
+<tbody>
+{% for item in org_history %}
+		<tr>
+		<td>{{item['filesystem']}}</td>
+		<td>{{item['database']}}</td>
+		<td>{{item['triplestore']}}</td>
+		<td>{{item['time']}}</td>
+		</tr>
+{% endfor %}
+ </tbody>
+</table>
+<a class="btn" href="/storage">{{ _('Back') }}</a>
+{% endblock %}
+
+{% block secondary_content %}
+{% snippet "storage/snippets/search_form.html", org_selected=org_selected, action=""%}
+{% endblock %}

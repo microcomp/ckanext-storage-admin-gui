@@ -14,6 +14,7 @@ class StorageAdminGui(plugins.SingletonPlugin):
         
     def before_map(self, map):
         map.connect('storage','/storage', action='list', controller='ckanext.storage_gui.storageGUI:StorageController')
+        map.connect('storage_detail','/storage/detail', action='detail', controller='ckanext.storage_gui.storageGUI:StorageController')
         return map
     
     def get_helpers(self):

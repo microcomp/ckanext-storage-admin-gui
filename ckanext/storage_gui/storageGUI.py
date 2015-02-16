@@ -32,19 +32,27 @@ class StorageController(base.BaseController):
         for key, org in stats_org.iteritems():
             insert_storage_stat(key, org['filesystem'], org['database'], org['triplestore'])
             
-    def detail(self, org_id):
-        org_info = tk.get_action('organization_show')(data_dict = {'id' : org_id})
+    def detail(self):
+        org_id = base.request.params.get('org', None)
+        try:
+            org_info = tk.get_action('organization_show')(data_dict = {'id' : org_id})
+        except tk.ObjectNotFound: 
+            log.info('organization not found')
+            base.abort(404, tk._('Organization not found'))
         organization_name = org_info['display_name']
-        
         list_org_history = []
         create_storage_stat_table()
         data_dict = {'subject_id' : org_id}
         org_history = db.StorageStat.get(**data_dict)
         for item in org_history:
-            list_org_history.append({'filesystem' : item.filestore_usage,
-                                     'database' : item.database_usage,
-                                     'triplestore' : item.triplestore_usage,
-                                     'time' : item.time})
+            list_org_history.append({'filesystem' : size(item.filestore_usage),
+                                     'database' : size(item.database_usage),
+                                     'triplestore' : size(item.triplestore_usage),
+                                     'time' : item.time.strftime("%H:%M:%S %d.%m.%Y")})
+            
+        return base.render('storage/detail.html',extra_vars={'org_name' : organization_name,
+                                                             'org_history' : list_org_history,
+                                                             'org_selected' : org_id})
         
         
         
@@ -52,12 +60,6 @@ class StorageController(base.BaseController):
         check = db.table_exists('ckanext_storage_stat', model).first()
         if not check['exists']:
             log.info('creating ckanext_storage_stat table and filling in')
-            #db.init_db(model)
-            #stats = tk.get_action('used_space')()
-            #stats_org = tk.get_action('used_space_per_org')()
-            #insert_storage_stat('total', stats['filesystem'], stats['database'], stats['triplestore'])
-            #for key, org in stats_org.iteritems():
-            #    insert_storage_stat(key, org['filesystem'], org['database'], org['triplestore'])
             self._retrieve_data_to_db()
         
         update = base.request.params.get('refresh', None)
@@ -82,26 +84,16 @@ class StorageController(base.BaseController):
                 total_filestore_usage = size(res['filestore_usage'])
                 total_database_usage = size(res['database_usage'])
                 total_triplestore_usage = size(res['triplestore_usage'])
-                last_update_time = res['time']
+                last_update_time = res['time'].strftime("%H:%M:%S %d.%m.%Y")
             else:
+                org_url = tk.url_for(controller='ckanext.storage_gui.storageGUI:StorageController', action='detail',
+                    org=res['subject_id'])
                 org_info = tk.get_action('organization_show')(data_dict = {'id':res['subject_id']})
                 filtered_content.append({'title' : org_info['display_name'],
+                                         'url' : org_url,
                                          'filesystem' : size(res['filestore_usage']),
                                          'database' : size(res['database_usage']),
                                          'triplestore' : size(res['triplestore_usage'])})
-        #results = db.StorageStat.get()
-        #for result in results:
-        #    if result.subject_id=='total':
-        #        total_filestore_usage = size(result.filestore_usage)
-        #        total_database_usage = size(result.database_usage)
-        #        total_triplestore_usage = size(result.triplestore_usage)
-        #        last_update_time = result.time
-        #    else:
-        #        org_info = tk.get_action('organization_show')(data_dict = {'id':result.subject_id})
-        #        filtered_content.append({'title' : org_info['display_name'],
-        #                                 'filesystem' : size(result.filestore_usage),
-        #                                 'database' : size(result.database_usage),
-        #                                 'triplestore' : size(result.triplestore_usage)})
                 
         org = base.request.params.get('org', None)
         if org:

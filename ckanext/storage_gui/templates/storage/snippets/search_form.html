@@ -1,0 +1,20 @@
+<section class="module module-narrow module-shallow">
+<h2 class="module-heading">{{ _('Filter storage usage') }}</h2>
+<form action= "{{ action }}" method="get" class="module-content form-inline form-narrow">
+<div class="control-group">
+<label for="field-org">{{ _('Usage per organization') }}</label>
+<select id="field-org" name="org" data-module="autocomplete">
+	<option value="">{{ _('All') }}</option>
+	{% set organizations_available = h.organizations_available() %}
+	{% for organization in organizations_available %}
+		{# get out first org from users list only if there is not an existing org #}
+		<option value="{{ organization.id }}" {% if organization.id == org_selected %} selected="selected" {% endif %}>{{ organization.display_name }}</option>
+	{% endfor %}
+</select>
+</div>
+<div class="form-actions">
+<button class="btn btn-primary">{{ _('Apply') }}</button>
+<a class="btn" href="/storage">{{ _('Cancel') }}</a>
+</div>
+</form>
+</section>
