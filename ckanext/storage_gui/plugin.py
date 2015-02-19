@@ -13,8 +13,8 @@ class StorageAdminGui(plugins.SingletonPlugin):
         toolkit.add_template_directory(config, 'templates')
         
     def before_map(self, map):
-        map.connect('storage','/storage', action='list', controller='ckanext.storage_gui.storageGUI:StorageController')
-        map.connect('storage_detail','/storage/detail', action='detail', controller='ckanext.storage_gui.storageGUI:StorageController')
+        map.connect('storage','/admin/storage', action='list', controller='ckanext.storage_gui.storageGUI:StorageController')
+        map.connect('storage_detail','/admin/storage/detail', action='detail', controller='ckanext.storage_gui.storageGUI:StorageController')
         return map
     
     def get_helpers(self):

@@ -48,7 +48,6 @@ def table_exists(name, model):
             AND    c.relkind = 'r'    -- only tables(?)
         );
     '''.format(name)
-    log.info(sql)
     res = None
     conn = model.Session.connection()
     try:

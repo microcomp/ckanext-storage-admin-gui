@@ -56,5 +56,5 @@ Last update time : {{ update_time }}
 {% endblock %}
 
 {% block secondary_content %}
-{% snippet "storage/snippets/search_form.html", org_selected=org_selected, action="storage/detail"%}
+{% snippet "storage/snippets/search_form.html", orgs=orgs, org_selected=org_selected, action="/admin/storage/detail"%}
 {% endblock %}

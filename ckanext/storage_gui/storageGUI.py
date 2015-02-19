@@ -34,6 +34,7 @@ class StorageController(base.BaseController):
             
     def detail(self):
         org_id = base.request.params.get('org', None)
+        log.info("selected org: %s", org_id)
         try:
             org_info = tk.get_action('organization_show')(data_dict = {'id' : org_id})
         except tk.ObjectNotFound: 
@@ -43,6 +44,8 @@ class StorageController(base.BaseController):
         list_org_history = []
         create_storage_stat_table()
         data_dict = {'subject_id' : org_id}
+        list_of_orgs = tk.get_action('organization_list')(data_dict = {'all_fields': True})
+        orgs = [(item['display_name'], item['id'])for item in list_of_orgs]
         org_history = db.StorageStat.get(**data_dict)
         for item in org_history:
             list_org_history.append({'filesystem' : size(item.filestore_usage),
@@ -52,7 +55,8 @@ class StorageController(base.BaseController):
             
         return base.render('storage/detail.html',extra_vars={'org_name' : organization_name,
                                                              'org_history' : list_org_history,
-                                                             'org_selected' : org_id})
+                                                             'org_selected' : org_id,
+                                                             'orgs' : orgs})
         
         
         
@@ -77,6 +81,9 @@ class StorageController(base.BaseController):
         total_database_usage = None
         total_triplestore_usage = None
         last_update_time = None
+        
+        list_of_orgs = tk.get_action('organization_list')(data_dict = {'all_fields': True})
+        orgs = [(item['display_name'], item['id'])for item in list_of_orgs]
         
         result = db.retrieve_actual_usage(model)
         for res in result:
@@ -104,6 +111,7 @@ class StorageController(base.BaseController):
                                                             'stats_org' : filtered_content,
                                                             'filesystem' : total_filestore_usage,
                                                             'database' : total_database_usage,
-                                                            'triplestore' : total_triplestore_usage})
+                                                            'triplestore' : total_triplestore_usage,
+                                                            'orgs' : orgs})
         
         
