@@ -1,19 +1,18 @@
-# Slovak translations for ckanext-storage-admin-gui.
+# Translations template for ckanext-storage-admin-gui.
 # Copyright (C) 2015 ORGANIZATION
 # This file is distributed under the same license as the
 # ckanext-storage-admin-gui project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
 #
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-storage-admin-gui 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2015-02-23 10:03+0100\n"
-"PO-Revision-Date: 2015-02-23 10:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: sk <LL@li.org>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,67 +20,67 @@ msgstr ""
 
 #: ckanext/storage_gui/storageGUI.py:42
 msgid "Organization not found"
-msgstr "Organiz·cia nebola n·jden·"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:2
 #: ckanext/storage_gui/templates/storage/index.html:2
 msgid "CKAN - Storage Administration"
-msgstr "CKAN - Riadenie ˙loûÌsk"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:4
 #: ckanext/storage_gui/templates/storage/index.html:4
 msgid "Storage Administration"
-msgstr "Riadenie ˙loûÌsk"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:8
 #: ckanext/storage_gui/templates/storage/index.html:8
 msgid "Storage statistics"
-msgstr "ätatistika ˙loûÌsk"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:15
 #: ckanext/storage_gui/templates/storage/index.html:30
 msgid "Filesystem usage"
-msgstr "Vyuûitie s˙borovÈho ˙loûiska"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:16
 #: ckanext/storage_gui/templates/storage/index.html:31
 msgid "Database usage"
-msgstr "Vyuûitie datab·z"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:17
 #: ckanext/storage_gui/templates/storage/index.html:32
 msgid "Triplestore usage"
-msgstr "Vyuûitie triplestore"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:18
 msgid "Update time"
-msgstr "»as aktualiz·cie"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:32
 msgid "Back"
-msgstr "Nasp‰ù na zoznam"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/index.html:12
 msgid "Refresh data"
-msgstr "Aktualizuj d·ta"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/index.html:29
 msgid "Organization"
-msgstr "Organiz·cia"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:2
 msgid "Filter storage usage"
-msgstr "Filtrovaù vyuûitie ˙loûÌsk"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:5
 msgid "Usage per organization"
-msgstr "Pouûitie za organiz·ciu"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:14
 msgid "Apply"
-msgstr "Pouûiù"
+msgstr ""
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:15
 msgid "Cancel"
-msgstr "Zruöiù"
+msgstr ""
 
