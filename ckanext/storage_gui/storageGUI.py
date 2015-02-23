@@ -4,6 +4,8 @@ import ckan.lib.base as base
 import ckan.plugins.toolkit as tk
 import ckan.model as model
 from hurry.filesize import size
+import ckan.logic as logic
+from ckan.common import _, c
 
 log = logging.getLogger(__name__)
 
@@ -33,6 +35,12 @@ class StorageController(base.BaseController):
             insert_storage_stat(key, org['filesystem'], org['database'], org['triplestore'])
             
     def detail(self):
+        context = {'user' : c.user}
+        try:
+            logic.check_access('storage_usage', context)
+        except tk.NotAuthorized, e:
+            log.info(e.extra_msg)
+            tk.abort(401, e.extra_msg)
         org_id = base.request.params.get('org', None)
         log.info("selected org: %s", org_id)
         try:
@@ -61,6 +69,12 @@ class StorageController(base.BaseController):
         
         
     def list(self):
+        context = {'user' : c.user}
+        try:
+            logic.check_access('storage_usage', context)
+        except tk.NotAuthorized, e:
+            log.info(e.extra_msg)
+            tk.abort(401, e.extra_msg)
         check = db.table_exists('ckanext_storage_stat', model).first()
         if not check['exists']:
             log.info('creating ckanext_storage_stat table and filling in')
