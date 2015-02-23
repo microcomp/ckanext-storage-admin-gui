@@ -17,14 +17,27 @@ setup(
     license='',
     packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
     namespace_packages=['ckanext', 'ckanext.storage_gui'],
+    package_data={'': [
+        'i18n/*/LC_MESSAGES/*.po',
+        'templates/*.html',\
+        'templates/storage/*.html',\
+        'templates/storage/snippets/*.html']},
     include_package_data=True,
     zip_safe=False,
     install_requires=[
         # -*- Extra requirements: -*-
     ],
-    entry_points='''
-        [ckan.plugins]
-        # Add plugins here, e.g.
-        storage_admin_gui=ckanext.storage_gui.plugin:StorageAdminGui
-    ''',
+#     entry_points='''
+#         [ckan.plugins]
+#         # Add plugins here, e.g.
+#         storage_admin_gui=ckanext.storage_gui.plugin:StorageAdminGui
+#     ''',
+    entry_points={
+        'babel.extractors': [
+                    'ckan = ckan.lib.extract:extract_ckan',
+                    ],
+        'ckan.plugins' : [
+                    'storage_admin_gui = ckanext.storage_gui.plugin:StorageAdminGui',
+                    ]
+        }
 )
