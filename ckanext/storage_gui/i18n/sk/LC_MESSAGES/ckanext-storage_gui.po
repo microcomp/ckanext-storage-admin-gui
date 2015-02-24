@@ -21,67 +21,67 @@ msgstr ""
 
 #: ckanext/storage_gui/storageGUI.py:42
 msgid "Organization not found"
-msgstr "Organizácia nebola nájdená"
+msgstr "OrganizÃ¡cia nebola nÃ¡jdenÃ¡"
 
 #: ckanext/storage_gui/templates/storage/detail.html:2
 #: ckanext/storage_gui/templates/storage/index.html:2
 msgid "CKAN - Storage Administration"
-msgstr "CKAN - Riadenie úloísk"
+msgstr "CKAN - Riadenie ÃºloÅ¾Ã­sk"
 
 #: ckanext/storage_gui/templates/storage/detail.html:4
 #: ckanext/storage_gui/templates/storage/index.html:4
 msgid "Storage Administration"
-msgstr "Riadenie úloísk"
+msgstr "Riadenie ÃºloÅ¾Ã­sk"
 
 #: ckanext/storage_gui/templates/storage/detail.html:8
 #: ckanext/storage_gui/templates/storage/index.html:8
 msgid "Storage statistics"
-msgstr "Štatistika úloísk"
+msgstr "Å tatistika ÃºloÅ¾Ã­sk"
 
 #: ckanext/storage_gui/templates/storage/detail.html:15
 #: ckanext/storage_gui/templates/storage/index.html:30
 msgid "Filesystem usage"
-msgstr "Vyuitie súborového úloiska"
+msgstr "VyuÅ¾itie sÃºborovÃ©ho ÃºloÅ¾iska"
 
 #: ckanext/storage_gui/templates/storage/detail.html:16
 #: ckanext/storage_gui/templates/storage/index.html:31
 msgid "Database usage"
-msgstr "Vyuitie databáz"
+msgstr "VyuÅ¾itie databÃ¡z"
 
 #: ckanext/storage_gui/templates/storage/detail.html:17
 #: ckanext/storage_gui/templates/storage/index.html:32
 msgid "Triplestore usage"
-msgstr "Vyuitie triplestore"
+msgstr "VyuÅ¾itie triplestore"
 
 #: ckanext/storage_gui/templates/storage/detail.html:18
 msgid "Update time"
-msgstr "Èas aktualizácie"
+msgstr "ÄŒas aktualizÃ¡cie"
 
 #: ckanext/storage_gui/templates/storage/detail.html:32
 msgid "Back"
-msgstr "Naspä na zoznam"
+msgstr "NaspÃ¤Å¥ na zoznam"
 
 #: ckanext/storage_gui/templates/storage/index.html:12
 msgid "Refresh data"
-msgstr "Aktualizuj dáta"
+msgstr "Aktualizuj dÃ¡ta"
 
 #: ckanext/storage_gui/templates/storage/index.html:29
 msgid "Organization"
-msgstr "Organizácia"
+msgstr "OrganizÃ¡cia"
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:2
 msgid "Filter storage usage"
-msgstr "Filtrova vyuitie úloísk"
+msgstr "FiltrovaÅ¥ vyuÅ¾itie ÃºloÅ¾Ã­sk"
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:5
 msgid "Usage per organization"
-msgstr "Pouitie za organizáciu"
+msgstr "PouÅ¾itie za organizÃ¡ciu"
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:14
 msgid "Apply"
-msgstr "Poui"
+msgstr "PouÅ¾iÅ¥"
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:15
 msgid "Cancel"
-msgstr "Zruši"
+msgstr "ZruÅ¡iÅ¥"
 
