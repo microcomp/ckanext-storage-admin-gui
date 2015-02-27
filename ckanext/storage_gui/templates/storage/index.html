@@ -5,23 +5,23 @@
 {% endblock %}
 {% block primary_content %}
 <div class="page-header">
-<h1>{{_('Storage statistics')}}</h1>
+<h1>{{ _('Storage Administration') }}</h1>
 </div>
 <form action="" method="get" class="module-content form-inline form-narrow">
 <input type="hidden" name="refresh" value=1 />
 <button class="btn btn-primary">{{ _('Refresh data') }}</button>
 </form>
 <p>
-Filesystem storage : {{ filesystem }}
+{{ _('Filesystem storage') }} : {{ filesystem }}
 </p>
 <p>
-Database storage : {{ database }}
+{{ _('Database storage') }} : {{ database }}
 </p>
 <p>
-Triplestore storage : {{ triplestore }}
+{{ _('Triplestore storage') }} : {{ triplestore }}
 </p>
 <p>
-Last update time : {{ update_time }}
+{{ _('Last update time') }} : {{ update_time }}
 </p>
 <table class="table table-striped table-responsive">
 	<thead>

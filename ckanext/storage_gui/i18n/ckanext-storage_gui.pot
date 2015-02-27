@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-storage-admin-gui 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-02-23 10:03+0100\n"
+"POT-Creation-Date: 2015-02-27 09:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ckanext/storage_gui/storageGUI.py:42
+#: ckanext/storage_gui/storageGUI.py:50
 msgid "Organization not found"
 msgstr ""
 
@@ -29,11 +29,11 @@ msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:4
 #: ckanext/storage_gui/templates/storage/index.html:4
+#: ckanext/storage_gui/templates/storage/index.html:8
 msgid "Storage Administration"
 msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:8
-#: ckanext/storage_gui/templates/storage/index.html:8
 msgid "Storage statistics"
 msgstr ""
 
@@ -62,6 +62,22 @@ msgstr ""
 
 #: ckanext/storage_gui/templates/storage/index.html:12
 msgid "Refresh data"
+msgstr ""
+
+#: ckanext/storage_gui/templates/storage/index.html:15
+msgid "Filesystem storage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/storage/index.html:18
+msgid "Database storage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/storage/index.html:21
+msgid "Triplestore storage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/storage/index.html:24
+msgid "Last update time"
 msgstr ""
 
 #: ckanext/storage_gui/templates/storage/index.html:29
