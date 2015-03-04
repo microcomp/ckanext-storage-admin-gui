@@ -109,12 +109,16 @@ class StorageController(base.BaseController):
             else:
                 org_url = tk.url_for(controller='ckanext.storage_gui.storageGUI:StorageController', action='detail',
                     org=res['subject_id'])
-                org_info = tk.get_action('organization_show')(data_dict = {'id':res['subject_id']})
-                filtered_content.append({'title' : org_info['display_name'],
-                                         'url' : org_url,
-                                         'filesystem' : size(res['filestore_usage']),
-                                         'database' : size(res['database_usage']),
-                                         'triplestore' : size(res['triplestore_usage'])})
+                try:
+                    org_info = tk.get_action('organization_show')(data_dict = {'id':res['subject_id'],
+                                                                               'include_datasets' : False})
+                    filtered_content.append({'title' : org_info['display_name'],
+                                             'url' : org_url,
+                                             'filesystem' : size(res['filestore_usage']),
+                                             'database' : size(res['database_usage']),
+                                             'triplestore' : size(res['triplestore_usage'])})
+                except logic.NotFound as e:
+                    log.exception(e)
                 
         org = base.request.params.get('org', None)
         if org:
