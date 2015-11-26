@@ -12,13 +12,13 @@
 <button class="mybutton" style="float: right;"><i class="fa fa-refresh"></i> {{ _('Refresh data') }}</button>
 </form>
 <p>
-{{ _('Filesystem storage') }} : {{ filesystem }}
+{{ _('Filesystem storage') }} : {{ h.localised_filesize(filesystem) }}
 </p>
 <p>
-{{ _('Database storage') }} : {{ database }}
+{{ _('Database storage') }} : {{ h.localised_filesize(database) }}
 </p>
 <p>
-{{ _('Triplestore storage') }} : {{ triplestore }}
+{{ _('Triplestore storage') }} : {{ h.localised_filesize(triplestore) }}
 </p>
 <p>
 {{ _('Last update time') }} : {{ update_time }}
@@ -30,16 +30,17 @@
         <th>{{_('Filesystem usage')}}</th>
         <th>{{_('Database usage')}}</th>
         <th>{{_('Triplestore usage')}}</th>
+        <th>{{_('Filesystem usage limit')}}</th>
       </tr>
     </thead>
 <tbody>
 {% for organization in stats_org %}
 		<tr>
 		<td><a href="{{ organization['url'] }}">{{organization['title']}}</a></td>
-		<td>{{organization['filesystem']}}</td>
-		<td>{{organization['database']}}</td>
-		<td>{{organization['triplestore']}}</td>
-		
+		<td>{{ h.localised_filesize(organization['filesystem']) }}</td>
+		<td>{{ h.localised_filesize(organization['database']) }}</td>
+		<td>{{ h.localised_filesize(organization['triplestore']) }}</td>
+		<td>{{ h.localised_filesize(organization['limit']) }}</td>
 		</tr>
 {% endfor %}
  </tbody>

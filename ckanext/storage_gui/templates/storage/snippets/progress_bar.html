@@ -1,0 +1,10 @@
+<div class="progress">
+{% if percentage_usage < 51 %}
+	{% set bar_style= "bar-success"%}
+{% elif percentage_usage < 76 %}
+	{% set bar_style = "bar-warning"%}
+{% else %}
+	{% set bar_style = "bar-danger"%}
+{% endif %}
+  <div class="bar {{bar_style}}" style="width: {{percentage_usage}}%;">{{ h.localised_filesize(current) }}/{{h.localised_filesize(limit)}}</div>
+</div>
