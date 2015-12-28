@@ -4,6 +4,7 @@ from pylons import config
 import sqlalchemy
 import ckan.logic as logic
 import ckan.model as model
+import ckan.lib.uploader as uploader
 from ckanext.storage_gui.storageGUI import org_free_space_filestore
 from ckanext.storage_gui.model.resource_size import package_get_limit
 
@@ -83,16 +84,13 @@ def organization_available_space(context, data_dict):
         return True
     return False
 
-def _get_max_resource_size():
-    return config.get('ckan.max_resource_size', 2)
-
 def package_resource_size_limit(context, data_dict):
     id = _get_or_bust(data_dict, 'id')
     pkg = model.Package.get(id)
     if pkg is None:
         raise NotFound('Package was not found.')
     limit = package_get_limit(pkg.id)
-    limit = limit/mb if limit > 0 else _get_max_resource_size()
+    limit = limit/mb if limit > 0 else uploader.get_max_resource_size()
     log.info('limit in MiB: %s', limit)
     return limit
     

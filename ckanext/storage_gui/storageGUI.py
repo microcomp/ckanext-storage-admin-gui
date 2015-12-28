@@ -242,7 +242,7 @@ class StorageController(base.BaseController):
         org_db_percentage_usage = self._get_percentage_usage(org_db_limit, org_db_current_usage)
         org_triplestore_limit = self._retrieve_org_storage_limit(id, 'triplestore')
         org_triplestore_current_usage = list_org_history[-1]['triplestore'] if list_org_history else 0
-        org_triplestore_percentage_usage = self._get_percentage_usage(org_db_limit, org_triplestore_current_usage)
+        org_triplestore_percentage_usage = self._get_percentage_usage(org_triplestore_limit, org_triplestore_current_usage)
         
         
         try:

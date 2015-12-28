@@ -47,7 +47,7 @@ $(function(){
 		<td><a href="{{ organization['url'] }}">{{organization['title']}}</a></td>
 		<td>{{ h.localised_filesize(organization['filesystem']) }} ({{organization['filesystem_perc']}}%)</td>
 		<td>{{ h.localised_filesize(organization['database']) }} ({{organization['database_perc']}}%)</td>
-		<td>{{ h.localised_filesize(organization['triplestore']) }} ({{organization['filesystem_perc']}}%)</td>
+		<td>{{ h.localised_filesize(organization['triplestore']) }} ({{organization['triplestore_perc']}}%)</td>
 		</tr>
 {% endfor %}
  </tbody>
