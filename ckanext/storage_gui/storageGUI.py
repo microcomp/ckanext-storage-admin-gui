@@ -30,7 +30,9 @@ def org_free_space_filestore(org_id):
         org_current_usage = org_history[-1].filestore_usage
         if org_current_usage < org_limit:
             return org_limit - org_current_usage
-    return 0
+    else:
+        #nemame spocitany aktualny stav, vrat 1 aby islo pridat resource
+        return 1
 
 def create_storage_stat_table():
     if db.storage_stat_table is None:
@@ -233,11 +235,14 @@ class StorageController(base.BaseController):
                                      'time' : item.time.strftime("%H:%M:%S %d.%m.%Y")})
         
         org_filestore_limit = self._retrieve_org_storage_limit(id, 'filestore')
-        org_filestore_percentage_usage = self._get_percentage_usage(org_filestore_limit, list_org_history[-1]['filesystem'])
+        org_filestore_current_usage = list_org_history[-1]['filesystem'] if list_org_history else 0
+        org_filestore_percentage_usage = self._get_percentage_usage(org_filestore_limit, org_filestore_current_usage)
         org_db_limit = self._retrieve_org_storage_limit(id, 'database')
-        org_db_percentage_usage = self._get_percentage_usage(org_db_limit, list_org_history[-1]['database'])
+        org_db_current_usage = list_org_history[-1]['database'] if list_org_history else 0
+        org_db_percentage_usage = self._get_percentage_usage(org_db_limit, org_db_current_usage)
         org_triplestore_limit = self._retrieve_org_storage_limit(id, 'triplestore')
-        org_triplestore_percentage_usage = self._get_percentage_usage(org_db_limit, list_org_history[-1]['triplestore'])
+        org_triplestore_current_usage = list_org_history[-1]['triplestore'] if list_org_history else 0
+        org_triplestore_percentage_usage = self._get_percentage_usage(org_db_limit, org_triplestore_current_usage)
         
         
         try:
@@ -251,23 +256,19 @@ class StorageController(base.BaseController):
             c.package_list = package_list
         except NotFound:
             base.abort(404, _('Organization not found'))
-        return base.render('organization/storage.html',extra_vars={'org_history' : list_org_history,
-                                                             'org_filestore_limit' : org_filestore_limit,
-                                                             'org_db_limit' : org_db_limit,
-                                                             'org_triplestore_limit' : org_triplestore_limit,
-                                                             'org_filestore_percentage_usage' : org_filestore_percentage_usage,
-                                                             'org_db_percentage_usage' : org_db_percentage_usage,
-                                                             'org_triplestore_percentage_usage' : org_triplestore_percentage_usage})
+        return base.render('organization/storage.html',extra_vars={'org_filestore_usage' : org_filestore_current_usage,
+                                                                   'org_db_usage' : org_db_current_usage,
+                                                                   'org_triplestore_usage' : org_triplestore_current_usage,
+                                                                   'org_filestore_limit' : org_filestore_limit,
+                                                                   'org_db_limit' : org_db_limit,
+                                                                   'org_triplestore_limit' : org_triplestore_limit,
+                                                                   'org_filestore_percentage_usage' : org_filestore_percentage_usage,
+                                                                   'org_db_percentage_usage' : org_db_percentage_usage,
+                                                                   'org_triplestore_percentage_usage' : org_triplestore_percentage_usage})
 
     def detail(self):
         self._check_access(c.user)
         self._retrieve_config_attr()
-        context = {'user' : c.user}
-        try:
-            logic.check_access('storage_usage', context)
-        except tk.NotAuthorized, e:
-            log.info(e.extra_msg)
-            tk.abort(401, e.extra_msg)
         org_id = base.request.params.get('org', None)
         log.info("selected org: %s", org_id)
         try:
@@ -293,7 +294,7 @@ class StorageController(base.BaseController):
         org_db_limit = self._retrieve_org_storage_limit(org_id, 'database')
         org_db_percentage_usage = self._get_percentage_usage(org_db_limit, list_org_history[-1]['database'])
         org_triplestore_limit = self._retrieve_org_storage_limit(org_id, 'triplestore')
-        org_triplestore_percentage_usage = self._get_percentage_usage(org_db_limit, list_org_history[-1]['triplestore'])
+        org_triplestore_percentage_usage = self._get_percentage_usage(org_triplestore_limit, list_org_history[-1]['triplestore'])
 
         return base.render('storage/detail.html',extra_vars={'org_name' : organization_name,
                                                              'org_history' : list_org_history,
@@ -315,17 +316,27 @@ class StorageController(base.BaseController):
         except tk.NotAuthorized, e:
             log.info(e.extra_msg)
             tk.abort(401, e.extra_msg)
-        check = db.table_exists('ckanext_storage_stat', model).first()
-        if not check['exists']:
-            log.info('creating ckanext_storage_stat table and filling in')
-            self._retrieve_data_to_db()
-        
+            
+        list_of_orgs = tk.get_action('organization_list')(data_dict = {'all_fields': True})
+        orgs = [(item['display_name'], item['id'])for item in list_of_orgs]
+
+        org = base.request.params.get('org', None)
+        if org:
+            log.info('org filter: %s', org)
+            
         update = base.request.params.get('refresh', None)
         log.info('refresh value: %s', update)
         log.info('refresh value type: %s', type(update))
         if update and update==u'1':
             log.info('storage stat data will be updated')
             self._retrieve_data_to_db()
+
+        check = db.table_exists('ckanext_storage_stat', model).first()
+        if not check['exists']:
+            log.info('ckanext_storage_stat table does not exist.')
+            return base.render('storage/index.html',extra_vars={'org_selected' : org,
+                                                            'stats_org' : [],
+                                                            'orgs' : orgs})
         
         if db.storage_stat_table is None:
             db.init_db(model)    
@@ -347,26 +358,30 @@ class StorageController(base.BaseController):
                 total_triplestore_usage = res['triplestore_usage']
                 last_update_time = res['time'].strftime("%H:%M:%S %d.%m.%Y")
             else:
-                org_url = tk.url_for(controller='ckanext.storage_gui.storageGUI:StorageController', action='detail',
-                    org=res['subject_id'])
+                org_id = res['subject_id']
+                org_url = tk.url_for(controller='ckanext.storage_gui.storageGUI:StorageController', action='org_storage',
+                    id=org_id)
                 try:
-                    org_info = tk.get_action('organization_show')(data_dict = {'id':res['subject_id'],
-                                                                               'include_datasets' : False})
-                    org_limit = resource_size.organization_get_limit(res['subject_id'])
-                    if org_limit < 0:
-                        org_limit = mb * config.get('ckanext-storage-gui.max_organization_size', 2)
+                    org_info = tk.get_action('organization_show')(data_dict = {'id': org_id,
+                                                                               'include_datasets': False})
+
+                    org_filestore_limit = self._retrieve_org_storage_limit(org_id, 'filestore')
+                    org_filestore_percentage_usage = self._get_percentage_usage(org_filestore_limit, res['filestore_usage'])
+                    org_db_limit = self._retrieve_org_storage_limit(org_id, 'database')
+                    org_db_percentage_usage = self._get_percentage_usage(org_db_limit, res['database_usage'])
+                    org_triplestore_limit = self._retrieve_org_storage_limit(org_id, 'triplestore')
+                    org_triplestore_percentage_usage = self._get_percentage_usage(org_triplestore_limit, res['triplestore_usage'])
+
                     filtered_content.append({'title' : org_info['display_name'],
                                              'url' : org_url,
                                              'filesystem' : res['filestore_usage'],
+                                             'filesystem_perc' : org_filestore_percentage_usage,
                                              'database' : res['database_usage'],
+                                             'database_perc' : org_db_percentage_usage,
                                              'triplestore' : res['triplestore_usage'],
-                                             'limit' : org_limit})
+                                             'triplestore_perc' : org_triplestore_percentage_usage})
                 except logic.NotFound as e:
                     log.exception(e)
-                
-        org = base.request.params.get('org', None)
-        if org:
-            log.info('org filter: %s', org)
         
         return base.render('storage/index.html',extra_vars={'org_selected' : org,
                                                             'update_time' : last_update_time,

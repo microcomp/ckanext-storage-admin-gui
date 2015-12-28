@@ -21,6 +21,7 @@ class StorageAdminGui(plugins.SingletonPlugin):
 
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
+        toolkit.add_public_directory(config, 'public')
 
     def before_map(self, map):
         map.connect('storage','/admin/storage', action='list', controller='ckanext.storage_gui.storageGUI:StorageController')

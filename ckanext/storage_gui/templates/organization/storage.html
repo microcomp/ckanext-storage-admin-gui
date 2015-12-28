@@ -7,12 +7,12 @@
 {% endblock %}
 
 {% block primary_content_inner %}
-<h3>{{_('Filesystem usage')}}</h3>
-{% snippet "storage/snippets/progress_bar.html", current = org_history[-1]['filesystem'], limit = org_filestore_limit, percentage_usage = org_filestore_percentage_usage %}
-<h3>{{_('Database usage')}}</h3>
-{% snippet "storage/snippets/progress_bar.html", current = org_history[-1]['database'], limit = org_db_limit, percentage_usage = org_db_percentage_usage %}
-<h3>{{_('Triplestore usage')}}</h3>
-{% snippet "storage/snippets/progress_bar.html", current = org_history[-1]['triplestore'], limit = org_triplestore_limit, percentage_usage = org_triplestore_percentage_usage %}
+<h3>{{_('Filesystem usage')}} ({{ h.localised_filesize(org_filestore_usage) }}/{{h.localised_filesize(org_filestore_limit)}})</h3>
+{% snippet "storage/snippets/progress_bar.html", current = org_filestore_usage, limit = org_filestore_limit, percentage_usage = org_filestore_percentage_usage %}
+<h3>{{_('Database usage')}} ({{ h.localised_filesize(org_db_usage) }}/{{h.localised_filesize(org_db_limit)}})</h3>
+{% snippet "storage/snippets/progress_bar.html", current = org_db_usage, limit = org_db_limit, percentage_usage = org_db_percentage_usage %}
+<h3>{{_('Triplestore usage')}} ({{ h.localised_filesize(org_triplestore_usage) }}/{{h.localised_filesize(org_triplestore_limit)}})</h3>
+{% snippet "storage/snippets/progress_bar.html", current = org_triplestore_usage, limit = org_triplestore_limit, percentage_usage = org_triplestore_percentage_usage %}
 
 <h3> {{ _('Dataset storage settings') }} </h3>
 <table class="table table-header table-hover table-bordered">
@@ -27,6 +27,7 @@
       </tr>
     </thead>
     <tbody>
+      {% if c.package_list %}
       {% for id, title, limit in c.package_list %}
         <tr>
           <td class="media">
@@ -44,6 +45,9 @@
           </td>
         </tr>
       {% endfor %}
+      {% else %}
+      <tr><td>{{_('No datasets of organization found.')}}<td><td></td></tr>
+      {% endif %}
     </tbody>
   </table>
 {% endblock %}
