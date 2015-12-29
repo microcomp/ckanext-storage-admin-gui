@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-storage-admin-gui 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-02-27 09:20+0100\n"
+"POT-Creation-Date: 2015-12-29 00:10+1100\n"
 "PO-Revision-Date: 2015-02-23 10:06+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: sk <LL@li.org>\n"
@@ -19,9 +19,136 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ckanext/storage_gui/storageGUI.py:50
+#: ckanext/storage_gui/storageGUI.py:129
+msgid "Configuration of dataset limit was successfull."
+msgstr "Konfigurácia limitov datasetu bola úspešná."
+
+#: ckanext/storage_gui/storageGUI.py:143 ckanext/storage_gui/storageGUI.py:157
+#: ckanext/storage_gui/storageGUI.py:216 ckanext/storage_gui/storageGUI.py:258
+#: ckanext/storage_gui/storageGUI.py:278
 msgid "Organization not found"
 msgstr "Organizácia nebola nájdená"
+
+#: ckanext/storage_gui/storageGUI.py:154
+msgid "Dataset's max. resource size is set to default value."
+msgstr "Max. veľkosť dátového zdroja v datasete je nastavená na počiatočnú hodnotu."
+
+#: ckanext/storage_gui/storageGUI.py:162 ckanext/storage_gui/storageGUI.py:208
+msgid "Configuration reset was successfull."
+msgstr "Resetovanie konfigurácie bolo úspešné."
+
+#: ckanext/storage_gui/storageGUI.py:204
+msgid "Configuration updated."
+msgstr "Konfigurácia aktualizovaná."
+
+#: ckanext/storage_gui/templates/organization/edit_base.html:6
+#: ckanext/storage_gui/templates/organization/storage.html:3
+msgid "Storage"
+msgstr "Úložisko"
+
+#: ckanext/storage_gui/templates/organization/storage.html:6
+msgid "Edit storage limits"
+msgstr "Nastaviť limity úložíska"
+
+#: ckanext/storage_gui/templates/organization/storage.html:10
+#: ckanext/storage_gui/templates/storage/detail.html:12
+#: ckanext/storage_gui/templates/storage/detail.html:21
+#: ckanext/storage_gui/templates/storage/index.html:39
+msgid "Filesystem usage"
+msgstr "Využitie súborového úložiska"
+
+#: ckanext/storage_gui/templates/organization/storage.html:12
+#: ckanext/storage_gui/templates/storage/detail.html:14
+#: ckanext/storage_gui/templates/storage/detail.html:22
+#: ckanext/storage_gui/templates/storage/index.html:40
+msgid "Database usage"
+msgstr "Využitie databáz"
+
+#: ckanext/storage_gui/templates/organization/storage.html:14
+#: ckanext/storage_gui/templates/storage/detail.html:16
+#: ckanext/storage_gui/templates/storage/detail.html:23
+#: ckanext/storage_gui/templates/storage/index.html:41
+msgid "Triplestore usage"
+msgstr "Využitie triplestore"
+
+#: ckanext/storage_gui/templates/organization/storage.html:17
+msgid "Dataset storage settings"
+msgstr "Nastavenie uložiska pre datasety"
+
+#: ckanext/storage_gui/templates/organization/storage.html:24
+#: ckanext/storage_gui/templates/organization/snippets/dataset_entry.html:4
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:25
+#: ckanext/storage_gui/templates/organization/snippets/dataset_entry.html:13
+msgid "Max. resource size"
+msgstr "Max. veľkosť dát. zdroja"
+
+#: ckanext/storage_gui/templates/organization/storage.html:38
+msgid "Are you sure you want to set max. resource size to default value?"
+msgstr "Ste si istý, že chcete nastaviť max. veľkosť dátového zdroja na počiatočnú hodnotu?"
+
+#: ckanext/storage_gui/templates/organization/storage.html:40
+msgid "Edit"
+msgstr "Editovať"
+
+#: ckanext/storage_gui/templates/organization/storage.html:43
+msgid "Reset to default value"
+msgstr "Nastaviť na počiatočnú hodnotu"
+
+#: ckanext/storage_gui/templates/organization/storage.html:49
+msgid "No datasets of organization found."
+msgstr "Táto organizácia neobsahuje datasety."
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:3
+#: ckanext/storage_gui/templates/organization/storage_edit.html:3
+#: ckanext/storage_gui/templates/organization/storage_edit.html:9
+msgid "Edit Storage Limits"
+msgstr "Nastaviť limity úložiska"
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:7
+#: ckanext/storage_gui/templates/organization/storage_edit.html:7
+#: ckanext/storage_gui/templates/storage/detail.html:38
+msgid "Back"
+msgstr "Naspäť na zoznam"
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:9
+msgid "Edit dataset limit"
+msgstr "Editovať limity datasetu"
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:13
+#: ckanext/storage_gui/templates/organization/storage_edit.html:13
+msgid "Filestore limit"
+msgstr "Limit súborového úložiska"
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:15
+#: ckanext/storage_gui/templates/organization/storage_edit.html:17
+msgid "Are you sure you want to reset this configuration to default?"
+msgstr "Ste si istý, že chcete obnoviť počiatočnú konfiguráciu?"
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:16
+#: ckanext/storage_gui/templates/organization/storage_edit.html:18
+msgid "Reset Configuration"
+msgstr "Obnoviť konfiguráciu"
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:18
+#: ckanext/storage_gui/templates/organization/storage_edit.html:20
+msgid "Save configuration"
+msgstr "Uložiť konfiguráciu"
+
+#: ckanext/storage_gui/templates/organization/storage_edit.html:14
+msgid "Database limit"
+msgstr "Limit databázy"
+
+#: ckanext/storage_gui/templates/organization/storage_edit.html:15
+msgid "Triplestore limit"
+msgstr "Limit Triplestore úložiska"
+
+#: ckanext/storage_gui/templates/organization/snippets/dataset_entry.html:23
+#: ckanext/storage_gui/templates/organization/snippets/limit_entry.html:15
+msgid "Unit"
+msgstr "Jednotka"
 
 #: ckanext/storage_gui/templates/storage/detail.html:2
 #: ckanext/storage_gui/templates/storage/index.html:2
@@ -34,56 +161,41 @@ msgstr "CKAN - Riadenie úložísk"
 msgid "Storage Administration"
 msgstr "Riadenie úložísk"
 
-#: ckanext/storage_gui/templates/storage/detail.html:8
+#: ckanext/storage_gui/templates/storage/detail.html:9
 msgid "Storage statistics"
 msgstr "Štatistika úložísk"
 
-#: ckanext/storage_gui/templates/storage/detail.html:15
-#: ckanext/storage_gui/templates/storage/index.html:30
-msgid "Filesystem usage"
-msgstr "Využitie súborového úložiska"
-
-#: ckanext/storage_gui/templates/storage/detail.html:16
-#: ckanext/storage_gui/templates/storage/index.html:31
-msgid "Database usage"
-msgstr "Využitie databáz"
-
-#: ckanext/storage_gui/templates/storage/detail.html:17
-#: ckanext/storage_gui/templates/storage/index.html:32
-msgid "Triplestore usage"
-msgstr "Využitie triplestore"
-
-#: ckanext/storage_gui/templates/storage/detail.html:18
+#: ckanext/storage_gui/templates/storage/detail.html:24
 msgid "Update time"
 msgstr "Čas aktualizácie"
 
-#: ckanext/storage_gui/templates/storage/detail.html:32
-msgid "Back"
-msgstr "Naspäť na zoznam"
-
-#: ckanext/storage_gui/templates/storage/index.html:12
+#: ckanext/storage_gui/templates/storage/index.html:13
 msgid "Refresh data"
 msgstr "Aktualizuj dáta"
 
-#: ckanext/storage_gui/templates/storage/index.html:15
+#: ckanext/storage_gui/templates/storage/index.html:24
 msgid "Filesystem storage"
 msgstr "Súborové úložisko"
 
-#: ckanext/storage_gui/templates/storage/index.html:18
+#: ckanext/storage_gui/templates/storage/index.html:27
 msgid "Database storage"
 msgstr "Databázové úložisko"
 
-#: ckanext/storage_gui/templates/storage/index.html:21
+#: ckanext/storage_gui/templates/storage/index.html:30
 msgid "Triplestore storage"
 msgstr "Triplestore úložisko"
 
-#: ckanext/storage_gui/templates/storage/index.html:24
+#: ckanext/storage_gui/templates/storage/index.html:33
 msgid "Last update time"
 msgstr "Čas poslednej aktualizácie"
 
-#: ckanext/storage_gui/templates/storage/index.html:29
+#: ckanext/storage_gui/templates/storage/index.html:38
 msgid "Organization"
 msgstr "Organizácia"
+
+#: ckanext/storage_gui/templates/storage/index.html:57
+msgid "The computation of storage usage has not been executed. Trigger it now!"
+msgstr "Výpočet využitia úložiska ešte nebol spustený. Spustite ho teraz!"
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:2
 msgid "Filter storage usage"
@@ -93,11 +205,15 @@ msgstr "Filtrovať využitie úložísk"
 msgid "Usage per organization"
 msgstr "Použitie za organizáciu"
 
-#: ckanext/storage_gui/templates/storage/snippets/search_form.html:14
+#: ckanext/storage_gui/templates/storage/snippets/search_form.html:7
+msgid "Choose an organization"
+msgstr "Vyberte organizáciu"
+
+#: ckanext/storage_gui/templates/storage/snippets/search_form.html:15
 msgid "Apply"
 msgstr "Použiť"
 
-#: ckanext/storage_gui/templates/storage/snippets/search_form.html:15
+#: ckanext/storage_gui/templates/storage/snippets/search_form.html:16
 msgid "Cancel"
 msgstr "Zrušiť"
 

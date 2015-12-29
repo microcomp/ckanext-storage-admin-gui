@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ckanext-storage-admin-gui 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2015-02-27 09:20+0100\n"
+"POT-Creation-Date: 2015-12-29 00:10+1100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,135 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ckanext/storage_gui/storageGUI.py:50
+#: ckanext/storage_gui/storageGUI.py:129
+msgid "Configuration of dataset limit was successfull."
+msgstr ""
+
+#: ckanext/storage_gui/storageGUI.py:143 ckanext/storage_gui/storageGUI.py:157
+#: ckanext/storage_gui/storageGUI.py:216 ckanext/storage_gui/storageGUI.py:258
+#: ckanext/storage_gui/storageGUI.py:278
 msgid "Organization not found"
+msgstr ""
+
+#: ckanext/storage_gui/storageGUI.py:154
+msgid "Dataset's max. resource size is set to default value."
+msgstr ""
+
+#: ckanext/storage_gui/storageGUI.py:162 ckanext/storage_gui/storageGUI.py:208
+msgid "Configuration reset was successfull."
+msgstr ""
+
+#: ckanext/storage_gui/storageGUI.py:204
+msgid "Configuration updated."
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/edit_base.html:6
+#: ckanext/storage_gui/templates/organization/storage.html:3
+msgid "Storage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:6
+msgid "Edit storage limits"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:10
+#: ckanext/storage_gui/templates/storage/detail.html:12
+#: ckanext/storage_gui/templates/storage/detail.html:21
+#: ckanext/storage_gui/templates/storage/index.html:39
+msgid "Filesystem usage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:12
+#: ckanext/storage_gui/templates/storage/detail.html:14
+#: ckanext/storage_gui/templates/storage/detail.html:22
+#: ckanext/storage_gui/templates/storage/index.html:40
+msgid "Database usage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:14
+#: ckanext/storage_gui/templates/storage/detail.html:16
+#: ckanext/storage_gui/templates/storage/detail.html:23
+#: ckanext/storage_gui/templates/storage/index.html:41
+msgid "Triplestore usage"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:17
+msgid "Dataset storage settings"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:24
+#: ckanext/storage_gui/templates/organization/snippets/dataset_entry.html:4
+msgid "Dataset"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:25
+#: ckanext/storage_gui/templates/organization/snippets/dataset_entry.html:13
+msgid "Max. resource size"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:38
+msgid "Are you sure you want to set max. resource size to default value?"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:40
+msgid "Edit"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:43
+msgid "Reset to default value"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage.html:49
+msgid "No datasets of organization found."
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:3
+#: ckanext/storage_gui/templates/organization/storage_edit.html:3
+#: ckanext/storage_gui/templates/organization/storage_edit.html:9
+msgid "Edit Storage Limits"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:7
+#: ckanext/storage_gui/templates/organization/storage_edit.html:7
+#: ckanext/storage_gui/templates/storage/detail.html:38
+msgid "Back"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:9
+msgid "Edit dataset limit"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:13
+#: ckanext/storage_gui/templates/organization/storage_edit.html:13
+msgid "Filestore limit"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:15
+#: ckanext/storage_gui/templates/organization/storage_edit.html:17
+msgid "Are you sure you want to reset this configuration to default?"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:16
+#: ckanext/storage_gui/templates/organization/storage_edit.html:18
+msgid "Reset Configuration"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_dataset_edit.html:18
+#: ckanext/storage_gui/templates/organization/storage_edit.html:20
+msgid "Save configuration"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_edit.html:14
+msgid "Database limit"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/storage_edit.html:15
+msgid "Triplestore limit"
+msgstr ""
+
+#: ckanext/storage_gui/templates/organization/snippets/dataset_entry.html:23
+#: ckanext/storage_gui/templates/organization/snippets/limit_entry.html:15
+msgid "Unit"
 msgstr ""
 
 #: ckanext/storage_gui/templates/storage/detail.html:2
@@ -33,55 +160,40 @@ msgstr ""
 msgid "Storage Administration"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/detail.html:8
+#: ckanext/storage_gui/templates/storage/detail.html:9
 msgid "Storage statistics"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/detail.html:15
-#: ckanext/storage_gui/templates/storage/index.html:30
-msgid "Filesystem usage"
-msgstr ""
-
-#: ckanext/storage_gui/templates/storage/detail.html:16
-#: ckanext/storage_gui/templates/storage/index.html:31
-msgid "Database usage"
-msgstr ""
-
-#: ckanext/storage_gui/templates/storage/detail.html:17
-#: ckanext/storage_gui/templates/storage/index.html:32
-msgid "Triplestore usage"
-msgstr ""
-
-#: ckanext/storage_gui/templates/storage/detail.html:18
+#: ckanext/storage_gui/templates/storage/detail.html:24
 msgid "Update time"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/detail.html:32
-msgid "Back"
-msgstr ""
-
-#: ckanext/storage_gui/templates/storage/index.html:12
+#: ckanext/storage_gui/templates/storage/index.html:13
 msgid "Refresh data"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/index.html:15
+#: ckanext/storage_gui/templates/storage/index.html:24
 msgid "Filesystem storage"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/index.html:18
+#: ckanext/storage_gui/templates/storage/index.html:27
 msgid "Database storage"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/index.html:21
+#: ckanext/storage_gui/templates/storage/index.html:30
 msgid "Triplestore storage"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/index.html:24
+#: ckanext/storage_gui/templates/storage/index.html:33
 msgid "Last update time"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/index.html:29
+#: ckanext/storage_gui/templates/storage/index.html:38
 msgid "Organization"
+msgstr ""
+
+#: ckanext/storage_gui/templates/storage/index.html:57
+msgid "The computation of storage usage has not been executed. Trigger it now!"
 msgstr ""
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:2
@@ -92,11 +204,15 @@ msgstr ""
 msgid "Usage per organization"
 msgstr ""
 
-#: ckanext/storage_gui/templates/storage/snippets/search_form.html:14
-msgid "Apply"
+#: ckanext/storage_gui/templates/storage/snippets/search_form.html:7
+msgid "Choose an organization"
 msgstr ""
 
 #: ckanext/storage_gui/templates/storage/snippets/search_form.html:15
+msgid "Apply"
+msgstr ""
+
+#: ckanext/storage_gui/templates/storage/snippets/search_form.html:16
 msgid "Cancel"
 msgstr ""
 
