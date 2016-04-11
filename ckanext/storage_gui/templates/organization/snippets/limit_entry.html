@@ -1,0 +1,16 @@
+{% import 'macros/form.html' as form %}
+<div class="row-fluid">
+    <div class="control-group control-medium">
+        <label class="control-label" for="size">
+          {{ title }}
+        </label>
+      <div class="controls">
+          <input id="{{storage_type}}_size" type="number" name="{{storage_type}}_size" placeholder="0"
+          value={{storage_value}} class="control-medium">
+      </div>
+    </div>
+    <div class="add-member-or">
+    </div>
+  {% set format_attrs = {'data-module': 'autocomplete'} %}
+  {{ form.select( storage_type + '_unit', label=_('Unit'), options= endings, selected=storage_unit, error='', attrs=format_attrs) }}
+</div>

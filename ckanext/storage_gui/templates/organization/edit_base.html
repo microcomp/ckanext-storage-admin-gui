@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block content_primary_nav %}
+  {{super()}}
+  {% if h.check_access('storage_usage') %}
+  	{{ h.build_nav('organization_storage', _('Storage'), id=c.group_dict.id) }}
+  {% endif %}
+{% endblock %}

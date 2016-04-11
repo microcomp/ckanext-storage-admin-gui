@@ -1,0 +1,53 @@
+{% extends "organization/edit_base.html" %}
+
+{% block subtitle %}{{ _('Storage') }} - {{ super() }}{% endblock %}
+
+{% block page_primary_action %}
+  {% link_for _('Edit storage limits'), controller='ckanext.storage_gui.storageGUI:StorageController', action='org_storage_edit', id=c.group_dict.id, class_='btn btn-primary', icon='plus-sign-alt' %}
+{% endblock %}
+
+{% block primary_content_inner %}
+<h3>{{_('Filesystem usage')}} ({{ h.localised_filesize(org_filestore_usage) }}/{{h.localised_filesize(org_filestore_limit)}})</h3>
+{% snippet "storage/snippets/progress_bar.html", current = org_filestore_usage, limit = org_filestore_limit, percentage_usage = org_filestore_percentage_usage %}
+<h3>{{_('Database usage')}} ({{ h.localised_filesize(org_db_usage) }}/{{h.localised_filesize(org_db_limit)}})</h3>
+{% snippet "storage/snippets/progress_bar.html", current = org_db_usage, limit = org_db_limit, percentage_usage = org_db_percentage_usage %}
+<h3>{{_('Triplestore usage')}} ({{ h.localised_filesize(org_triplestore_usage) }}/{{h.localised_filesize(org_triplestore_limit)}})</h3>
+{% snippet "storage/snippets/progress_bar.html", current = org_triplestore_usage, limit = org_triplestore_limit, percentage_usage = org_triplestore_percentage_usage %}
+
+<h3> {{ _('Dataset storage settings') }} </h3>
+<table class="table table-header table-hover table-bordered">
+    <col width="70" />
+    <col width="40" />
+    <col width="20" />
+    <thead>
+      <tr>
+        <th scope="col">{{ _('Dataset') }}</th>
+        <th scope="col">{{ _('Max. resource size') }}</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if c.package_list %}
+      {% for id, title, limit in c.package_list %}
+        <tr>
+          <td class="media">
+            {{ title }}
+          </td>
+          <td>{{ limit  }}</td>
+          <td>
+            {% set locale = h.dump_json({'content': _('Are you sure you want to set max. resource size to default value?')}) %}
+            <div class="btn-group pull-right">
+              <a class="btn btn-small" href="{% url_for controller='ckanext.storage_gui.storageGUI:StorageController', action='dataset_storage_edit', id=c.group_dict.id, pkg_id=id %}" title="{{ _('Edit') }}">
+                <i class="icon-wrench"></i>
+              </a>
+              <a class="btn btn-danger btn-small" href="{% url_for controller='ckanext.storage_gui.storageGUI:StorageController', action='dataset_storage_reset', id=c.group_dict.id, pkg_id=id %}" data-module="confirm-action" data-module-i18n="{{ locale }}" title="{{ _('Reset to default value') }}">{% block delete_button_text %}<i class="icon-remove"></i>{% endblock %}</a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+      {% else %}
+      <tr><td>{{_('No datasets of organization found.')}}<td><td></td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+{% endblock %}

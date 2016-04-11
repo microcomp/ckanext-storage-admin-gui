@@ -4,6 +4,7 @@
 <div class="control-group">
 <label for="field-org">{{ _('Usage per organization') }}</label>
 <select id="field-org" name="org" data-module="autocomplete">
+<option value="not_selected" selected="selected"> {{_('Choose an organization')}}</option>
 	{% for organization in orgs %}
 		{# get out first org from users list only if there is not an existing org #}
 		<option value="{{ organization[1] }}" {% if organization[1] == org_selected %} selected="selected" {% endif %}>{{ organization[0] }}</option>

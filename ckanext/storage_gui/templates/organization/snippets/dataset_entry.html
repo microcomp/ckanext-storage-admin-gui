@@ -1,0 +1,24 @@
+{% import 'macros/form.html' as form %}
+    <div class="control-group control-medium">
+        <label class="control-label" for="size">
+          {{_('Dataset')}}
+        </label>
+      <div class="controls">
+          <input id="dataset" type="text" name="dataset" placeholder="e.g. dataset name" value="{{dataset}}" class="control-medium" data-module="autocomplete" data-module-source="/api/2/util/dataset/autocomplete?owner_org={{org_id}}&incomplete=?">
+      </div>
+    </div>
+<div class="row-fluid">
+    <div class="control-group control-medium">
+        <label class="control-label" for="size">
+          {{ _('Max. resource size') }}
+        </label>
+      <div class="controls">
+          <input id="max_resource_size" type="number" name="max_resource_size" placeholder="0"
+          value={{storage_value}} class="control-medium">
+      </div>
+    </div>
+    <div class="add-member-or">
+    </div>
+{% set format_attrs = {'data-module': 'autocomplete'} %}
+{{ form.select( 'size_unit', label=_('Unit'), options= endings, selected=storage_unit, error='', attrs=format_attrs) }}
+</div>

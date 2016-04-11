@@ -7,18 +7,27 @@
 <div class="page-header" style="border-left: 1px solid #d4d4d4;">
 <h1 style="padding-left:1em;" >{{ _('Storage Administration') }}</h1>
 </div>
-<form action="" method="get" class="module-content form-inline form-narrow">
+<link rel="stylesheet" type="text/css" href="/spinner.css"/>
+<form action="" method="post" class="module-content form-inline form-narrow">
 <input type="hidden" name="refresh" value=1 />
-<button class="mybutton" style="float: right;"><i class="fa fa-refresh"></i> {{ _('Refresh data') }}</button>
+<button class="mybutton has-spinner" data-loading-text="loading..." style="float: right;"><span class="spinner"><i class="fa fa-spinner fa-spin"></i></span> {{ _('Refresh data') }}</button>
 </form>
+<script type="text/javascript">
+$(function(){
+    $('a, button').click(function() {
+        $(this).toggleClass('active');
+    });
+});
+</script>
+{% if stats_org %}
 <p>
-{{ _('Filesystem storage') }} : {{ filesystem }}
+{{ _('Filesystem storage') }} : {{ h.localised_filesize(filesystem) }}
 </p>
 <p>
-{{ _('Database storage') }} : {{ database }}
+{{ _('Database storage') }} : {{ h.localised_filesize(database) }}
 </p>
 <p>
-{{ _('Triplestore storage') }} : {{ triplestore }}
+{{ _('Triplestore storage') }} : {{ h.localised_filesize(triplestore) }}
 </p>
 <p>
 {{ _('Last update time') }} : {{ update_time }}
@@ -36,23 +45,18 @@
 {% for organization in stats_org %}
 		<tr>
 		<td><a href="{{ organization['url'] }}">{{organization['title']}}</a></td>
-		<td>{{organization['filesystem']}}</td>
-		<td>{{organization['database']}}</td>
-		<td>{{organization['triplestore']}}</td>
-		
+		<td>{{ h.localised_filesize(organization['filesystem']) }} ({{organization['filesystem_perc']}}%)</td>
+		<td>{{ h.localised_filesize(organization['database']) }} ({{organization['database_perc']}}%)</td>
+		<td>{{ h.localised_filesize(organization['triplestore']) }} ({{organization['triplestore_perc']}}%)</td>
 		</tr>
 {% endfor %}
  </tbody>
 </table>
-<!-- <div class="pagination pagination-centered">
-  <ul>
-    <li><a href="page=1">1</a></li>
-    <li class="active"><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-  </ul>
-</div> -->
+{% else %}
+	<p>
+	{{_('The computation of storage usage has not been executed. Trigger it now!')}}
+	</p>
+{% endif %}
 {% endblock %}
 
 {% block secondary_content %}
